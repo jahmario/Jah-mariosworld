@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jah'mario Admin</title>
+  </head>
+  <body>
+    <!-- Netlify Identity widget enables login for Git Gateway -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Decap CMS (Git-based, works great with Hugo). On deploy, this loads from CDN. -->
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <script>
+      // Optional: open the login modal automatically if the user isn't logged in
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', (user) => {
+          if (!user) {
+            // Uncomment to auto-open login
+            // window.netlifyIdentity.open('login');
+          }
+        });
+      }
+    </script>
+  </body>
+  </html>

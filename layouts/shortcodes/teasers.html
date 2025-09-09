@@ -1,0 +1,38 @@
+{{/* Renders a responsive grid of music teaser drops from data/teasers.yaml */}}
+{{ $data := site.Data.teasers.teasers }}
+{{ if not $data }}
+  <p>No teasers yet. Add entries in <code>data/teasers.yaml</code>.</p>
+{{ else }}
+  <section class="pa3 pa4-ns w-100 w-90-ns center">
+    <div class="cf">
+      {{ range $data }}
+        <article class="fl w-100 w-50-m w-33-l pa2">
+          <div class="glass-card br3 overflow-hidden">
+            {{ with .cover }}
+              <div class="teaser-cover" style="background-image:url('{{ . }}');"></div>
+            {{ end }}
+            <div class="pa3">
+              <h3 class="teaser-title f4 mv2 white">{{ .title }}</h3>
+              {{ with .release_date }}
+                <div class="f6 silver mb2">Release: {{ . }}</div>
+              {{ end }}
+              {{ with .audio }}
+                <audio controls preload="none" class="teaser-audio">
+                  <source src="{{ . }}" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              {{ end }}
+              {{ with .ctas }}
+                <div class="mt2">
+                  {{ range . }}
+                    <a class="btn-gradient link dib mr2 mb2" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }}</a>
+                  {{ end }}
+                </div>
+              {{ end }}
+            </div>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

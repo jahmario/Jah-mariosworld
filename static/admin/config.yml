@@ -1,0 +1,89 @@
+# GitHub backend configuration
+backend:
+  name: github
+  repo: jahmario/Jah-mariosworld
+  branch: main
+  base_url: https://api.github.com
+  site_domain: jahmario-music.netlify.app
+  auth_type: implicit
+  app_id: Ov23li8EvLhVHgbJxtvr
+# Enable local editing without any login during development
+local_backend: true
+
+media_folder: static/images/uploads
+public_folder: /images/uploads
+
+site_url: /
+logo_url: /images/gohugo-default-sample-hero-image.jpg
+
+collections:
+  # Edit main pages
+  - name: pages
+    label: Pages
+    label_singular: Page
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: content/_index.md
+        label: Home
+        name: home
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text, required: false }
+          - { label: Featured Image, name: featured_image, widget: image, required: false }
+          - { label: Body, name: body, widget: markdown, required: false }
+      - file: content/music.md
+        label: Music
+        name: music
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text, required: false }
+          - { label: Featured Image, name: featured_image, widget: image, required: false }
+          - { label: Body, name: body, widget: markdown, required: false }
+      - file: content/about.md
+        label: About
+        name: about
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text, required: false }
+          - { label: Featured Image, name: featured_image, widget: image, required: false }
+          - { label: Body, name: body, widget: markdown, required: false }
+      - file: content/contact.md
+        label: Contact
+        name: contact
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text, required: false }
+          - { label: Featured Image, name: featured_image, widget: image, required: false }
+          - { label: Body, name: body, widget: markdown, required: false }
+
+  # Edit teaser drops as a sortable list
+  - name: data
+    label: Data
+    delete: false
+    editor:
+      preview: false
+    files:
+      - file: data/teasers.yaml
+        label: Teasers
+        name: teasers
+        fields:
+          - label: Teasers
+            name: teasers
+            widget: list
+            summary: "{{fields.title}} — {{fields.release_date}}"
+            allow_add: true
+            collapsed: false
+            fields:
+              - { label: ID, name: id, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Cover, name: cover, widget: image, required: false }
+              - { label: Audio (mp3), name: audio, widget: file, required: false, media_library: { allow_multiple: false } }
+              - { label: Release Date, name: release_date, widget: date, required: false }
+              - label: CTAs
+                name: ctas
+                widget: list
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: URL, name: url, widget: string }

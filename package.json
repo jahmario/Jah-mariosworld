@@ -1,0 +1,11 @@
+{
+  "name": "jahmario-site",
+  "private": true,
+  "scripts": {
+    "dev": "bash scripts/live.sh dev",
+    "build": "bash scripts/live.sh build",
+    "deploy:gh": "bash scripts/live.sh deploy-gh",
+    "deploy:netlify": "bash scripts/live.sh deploy-netlify"
+  }
+}
+

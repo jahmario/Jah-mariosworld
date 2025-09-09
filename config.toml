@@ -1,0 +1,81 @@
+baseURL      = "http://localhost:1313/"
+languageCode = "en-us"
+title        = "Jah'mario"
+theme        = "ananke"
+
+[params]
+description = " The voice of the new revolution"
+author = "Jah'mario"
+background_color_class = "bg-near-black"
+body_classes = "avenir bg-near-black near-white"
+featured_image_class = "cover bg-center"
+cover_dimming_class = "bg-black-60"
+
+  [params.ananke]
+  show_recent_posts = false
+
+  [params.ananke.social]
+
+    [params.ananke.social.follow]
+    new_window_icon = false
+    # List the networks you want to show in the header/footer
+    networks = [
+      "instagram",
+      "youtube",
+      "tiktok",
+      "soundcloud",
+      "x-twitter",
+      "spotify"
+    ]
+
+    # Configure network profiles (replace usernames/links as appropriate)
+    [params.ananke.social.instagram]
+    username = "replace_me"
+
+    [params.ananke.social.youtube]
+    username = "jahmariosworld"
+
+    [params.ananke.social.tiktok]
+    username = "replace_me"
+
+    [params.ananke.social.soundcloud]
+    profilelink = "https://soundcloud.com/jahmariosworld"
+
+    [params.ananke.social.x-twitter]
+    username = "replace_me"
+
+    # Spotify is custom (ananke has no built-in network). Uses label text if icon missing.
+    [params.ananke.social.networks.spotify]
+    slug = "spotify"
+    label = "Spotify"
+    color = "#1DB954"
+    profile = "https://open.spotify.com/artist/6kTNXurxUJNy9Ew68GRWTV"
+    # icon intentionally omitted (theme has no spotify.svg by default)
+
+    [params.ananke.social.spotify]
+    profilelink = "https://open.spotify.com/artist/6kTNXurxUJNy9Ew68GRWTV"
+
+[menu]
+  [[menu.main]]
+  identifier = "home"
+  name = "Home"
+  url = "/"
+  weight = 10
+
+  [[menu.main]]
+  identifier = "music"
+  name = "Music"
+  url = "/music/"
+  weight = 20
+
+  [[menu.main]]
+  identifier = "about"
+  name = "About"
+  url = "/about/"
+  weight = 30
+
+  [[menu.main]]
+  identifier = "contact"
+  name = "Contact"
+  url = "/contact/"
+  weight = 40

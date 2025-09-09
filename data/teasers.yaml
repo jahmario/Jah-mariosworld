@@ -1,0 +1,17 @@
+teasers:
+  - id: rise-up
+    title: Rise Up (Teaser)
+    cover: ""
+    audio: /audio/rise-up-teaser.mp3
+    release_date: 2025-09-15
+    ctas:
+      - label: Pre-save
+        url: "#"
+  - id: pain
+    title: Pain
+    cover: ""
+    audio: /images/uploads/pain-final.wav
+    release_date: 2025-10-01
+    ctas:
+      - label: Notify Me
+        url: "#"

@@ -1,0 +1,13 @@
+[build]
+  command = "hugo --minify"
+  publish = "public"
+
+[dev]
+  command = "hugo server -D"
+  port = 1313
+  publish = "public"
+
+# Uncomment to pin Hugo version if needed
+#[build.environment]
+#  HUGO_VERSION = "0.126.1"
+

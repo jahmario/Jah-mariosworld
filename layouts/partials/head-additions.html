@@ -1,0 +1,3 @@
+{{/* Include site-specific CSS (processed via Hugo Pipes) */}}
+{{ $css := resources.Get "css/jahmario.css" | resources.Minify }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">

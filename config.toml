@@ -1,7 +1,10 @@
 baseURL      = "http://localhost:1313/"
 languageCode = "en-us"
 title        = "Jah'mario"
-theme        = "ananke"
+
+[module]
+  [[module.imports]]
+    path = "github.com/theNewDynamic/gohugo-theme-ananke"
 
 [params]
 description = " The voice of the new revolution"

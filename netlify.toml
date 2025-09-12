@@ -7,7 +7,7 @@
   port = 1313
   publish = "public"
 
-# Uncomment to pin Hugo version if needed
-#[build.environment]
-#  HUGO_VERSION = "0.126.1"
+# Pin Hugo version for Netlify builds
+[build.environment]
+  HUGO_VERSION = "0.149.0"
 

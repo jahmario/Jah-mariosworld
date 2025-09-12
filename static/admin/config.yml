@@ -1,12 +1,7 @@
-# GitHub backend configuration
+# Netlify CMS configuration
 backend:
-  name: github
-  repo: jahmario/Jah-mariosworld
+  name: git-gateway
   branch: main
-  base_url: https://api.github.com
-  site_domain: jahmario-music.netlify.app
-  auth_type: implicit
-  app_id: Ov23li8EvLhVHgbJxtvr
 # Enable local editing without any login during development
 local_backend: true
 

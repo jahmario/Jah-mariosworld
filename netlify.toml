@@ -1,5 +1,5 @@
 [build]
-  command = "git submodule update --init --recursive && hugo --minify"
+  command = "hugo --minify"
   publish = "public"
 
 [dev]

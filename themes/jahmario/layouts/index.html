@@ -1,0 +1,21 @@
+{{ define "main" }}
+    <div class="music-player">
+        <h2>Latest Track</h2>
+        <button class="play-button">▶</button>
+        <p>Experience the revolution in sound</p>
+    </div>
+    
+    <div class="posts">
+        <h2>Latest Posts</h2>
+        {{ range first 3 .Site.RegularPages }}
+            <article class="post">
+                <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                <div class="post-meta">
+                    {{ .Date.Format "January 2, 2006" }}
+                </div>
+                {{ .Summary }}
+                <p><a href="{{ .RelPermalink }}">Read more...</a></p>
+            </article>
+        {{ end }}
+    </div>
+{{ end }}

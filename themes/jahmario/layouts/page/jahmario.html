@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        .jahmario-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .text-section {
+            flex: 1;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .jahmario-name {
+            font-size: 4em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .tagline {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .revolution-text {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .new-text {
+            color: #800080;
+        }
+        
+        .listen-button {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .listen-button:hover {
+            background: #fff;
+            color: #000;
+        }
+        
+        .image-section {
+            flex: 1;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .portrait-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .jahmario-container {
+                flex-direction: column;
+            }
+            
+            .jahmario-name {
+                font-size: 2.5em;
+            }
+            
+            .tagline {
+                font-size: 1.5em;
+            }
+            
+            .revolution-text {
+                font-size: 1.8em;
+            }
+            
+            .text-section {
+                padding: 20px;
+                flex: 0 0 60vh;
+            }
+            
+            .image-section {
+                flex: 0 0 40vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="jahmario-container">
+        <div class="text-section">
+            <a href="/" class="back-button">← Back to Doors</a>
+            
+            <div class="jahmario-name">Jah'mario</div>
+            <div class="tagline">The Voice Of</div>
+            <div class="revolution-text">
+                The <span class="new-text">New</span> Revolution
+            </div>
+            
+            <button class="listen-button" onclick="window.location.href='/music'">
+                Listen Now
+            </button>
+        </div>
+        
+        <div class="image-section">
+            {{ if .Params.featured_image }}
+                <img src="{{ .Params.featured_image }}" alt="Jah'mario Portrait" class="portrait-image">
+            {{ else }}
+                <div style="color: #666; text-align: center;">
+                    <p>Portrait Image</p>
+                    <p style="font-size: 0.8em; margin-top: 10px;">Add image to /images/uploads/jahmario-portrait.jpg</p>
+                </div>
+            {{ end }}
+        </div>
+    </div>
+</body>
+</html>

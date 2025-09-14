@@ -1,0 +1,72 @@
+/* Design tokens */
+:root {
+  --bg: #0a0a0b;
+  --surface: #121215;
+  --muted: #9aa0a6;
+  --text: #f5f7fa;
+  --accent-1: #ff1e56;
+  --accent-2: #ff4d4d;
+  --card-border: rgba(255,255,255,0.08);
+  --shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Subtle dotted grid background */
+body {
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-position: 0 0, 25px 25px;
+  background-size: 50px 50px;
+}
+
+/* Hero section with deep red gradient aura */
+.hero-jahmario {
+  position: relative;
+  background: radial-gradient(1200px 600px at 70% 30%, rgba(255, 30, 86, 0.25), transparent 60%),
+              radial-gradient(900px 500px at 10% 20%, rgba(255, 77, 77, 0.18), transparent 55%),
+              linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.2));
+}
+
+.hero-title { letter-spacing: -0.5px; }
+.hero-kicker { color: var(--muted); text-transform: uppercase; letter-spacing: .18em; }
+
+/* Buttons */
+.btn-gradient {
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+  color: #0b0b0c !important;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  padding: .9rem 1.2rem;
+  box-shadow: 0 10px 24px rgba(255, 30, 86, .25);
+}
+.btn-gradient:hover { filter: brightness(1.08); transform: translateY(-1px); transition: .15s ease; }
+
+.btn-ghost {
+  border: 1px solid var(--card-border);
+  color: var(--text) !important;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  padding: .9rem 1.2rem;
+  backdrop-filter: blur(8px);
+}
+
+/* Glass cards */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.teaser-cover { height: 200px; background-size: cover; background-position: center; }
+.teaser-audio { width: 100%; margin: .25rem 0 .5rem; }
+.teaser-title { font-weight: 700; }
+
+/* Utility tweaks */
+.maxw-hero { max-width: 1200px; }
+.aspect-16x9 { aspect-ratio: 16/9; }
+

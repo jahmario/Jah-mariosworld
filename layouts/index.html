@@ -1,27 +1,58 @@
 {{ define "main" }}
-  <section class="hero-jahmario pt5 pb4 pb6-l">
-    <div class="center ph3 ph4-l maxw-hero">
-      <div class="cf flex-l items-center">
-        <div class="w-100 w-50-l pr0 pr4-l mb4 mb0-l">
-          <div class="hero-kicker f6 tracked-mega mb2">Jah'mario</div>
-          <h1 class="hero-title f2 f1-l lh-solid fw7 white mv2">Welcome to Project 555</h1>
-          <p class="f5 f4-l light-silver mt3 mb4">The new revolution is beginning, you're at the center of it. Catch the drops early and join the movement.</p>
-          <div class="mt2">
-            <a class="btn-gradient link dib mr2" href="/music/">Listen Teasers</a>
-            <a class="btn-ghost link dib" href="/contact/">Book Jah'mario</a>
-          </div>
+    <div class="doors-container">
+        <h1 class="doors-title">Choose Your Path</h1>
+        <div class="doors-wrapper">
+            <!-- Red Door - Jah'mario -->
+            <div class="door red-door" onclick="openDoor('jahmario')">
+                <div class="door-front">
+                    <div class="door-handle"></div>
+                    <div class="door-text">Jah'mario</div>
+                </div>
+                <div class="door-back"></div>
+            </div>
+            
+            <!-- Purple Door - Middle -->
+            <div class="door purple-door" onclick="openDoor('music')">
+                <div class="door-front">
+                    <div class="door-handle"></div>
+                    <div class="door-text">Music</div>
+                </div>
+                <div class="door-back"></div>
+            </div>
+            
+            <!-- Blue Door - Operation 555 -->
+            <div class="door blue-door" onclick="openDoor('operation555')">
+                <div class="door-front">
+                    <div class="door-handle"></div>
+                    <div class="door-text">Operation 555</div>
+                </div>
+                <div class="door-back"></div>
+            </div>
         </div>
-        <div class="w-100 w-50-l pl0 pl4-l">
-          <div class="glass-card pa2 aspect-16x9">
-            <img src="/images/gohugo-default-sample-hero-image.jpg" alt="Jah'mario visual" class="w-100 h-100 br3" style="object-fit: cover;">
-          </div>
-        </div>
-      </div>
+        
+        <div class="doors-subtitle">The voice of the new revolution</div>
     </div>
-  </section>
 
-  <article class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy nested-links white-80">
-    {{ .Content }}
-  </article>
+    <script>
+        function openDoor(doorType) {
+            const doors = document.querySelectorAll('.door');
+            doors.forEach(door => door.classList.add('opening'));
+            
+            setTimeout(() => {
+                // Navigate based on door selection
+                switch(doorType) {
+                    case 'jahmario':
+                        window.location.href = '/about';
+                        break;
+                    case 'music':
+                        window.location.href = '/music';
+                        break;
+                    case 'operation555':
+                        window.location.href = '/posts';
+                        break;
+                }
+            }, 1000);
+        }
+    </script>
 {{ end }}
 

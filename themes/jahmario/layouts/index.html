@@ -1,21 +1,57 @@
 {{ define "main" }}
-    <div class="music-player">
-        <h2>Latest Track</h2>
-        <button class="play-button">▶</button>
-        <p>Experience the revolution in sound</p>
-    </div>
-    
-    <div class="posts">
-        <h2>Latest Posts</h2>
-        {{ range first 3 .Site.RegularPages }}
-            <article class="post">
-                <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-                <div class="post-meta">
-                    {{ .Date.Format "January 2, 2006" }}
+    <div class="doors-container">
+        <h1 class="doors-title">Choose Your Path</h1>
+        <div class="doors-wrapper">
+            <!-- Red Door - Jah'mario -->
+            <div class="door red-door" onclick="openDoor('jahmario')">
+                <div class="door-front">
+                    <div class="door-handle"></div>
+                    <div class="door-text">Jah'mario</div>
                 </div>
-                {{ .Summary }}
-                <p><a href="{{ .RelPermalink }}">Read more...</a></p>
-            </article>
-        {{ end }}
+                <div class="door-back"></div>
+            </div>
+            
+            <!-- Purple Door - Middle -->
+            <div class="door purple-door" onclick="openDoor('music')">
+                <div class="door-front">
+                    <div class="door-handle"></div>
+                    <div class="door-text">Music</div>
+                </div>
+                <div class="door-back"></div>
+            </div>
+            
+            <!-- Blue Door - Operation 555 -->
+            <div class="door blue-door" onclick="openDoor('operation555')">
+                <div class="door-front">
+                    <div class="door-handle"></div>
+                    <div class="door-text">Operation 555</div>
+                </div>
+                <div class="door-back"></div>
+            </div>
+        </div>
+        
+        <div class="doors-subtitle">The voice of the new revolution</div>
     </div>
+
+    <script>
+        function openDoor(doorType) {
+            const doors = document.querySelectorAll('.door');
+            doors.forEach(door => door.classList.add('opening'));
+            
+            setTimeout(() => {
+                // Navigate based on door selection
+                switch(doorType) {
+                    case 'jahmario':
+                        window.location.href = '/about';
+                        break;
+                    case 'music':
+                        window.location.href = '/music';
+                        break;
+                    case 'operation555':
+                        window.location.href = '/posts';
+                        break;
+                }
+            }, 1000);
+        }
+    </script>
 {{ end }}

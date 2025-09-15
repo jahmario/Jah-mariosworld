@@ -5,8 +5,31 @@
 
 set -e  # Exit on any error
 
-echo "🎵 Jah'mario Website Deployment"
-echo "=============================="
+usage() {
+    echo "🎵 Jah'mario Website Deployment"
+    echo "=============================="
+    echo ""
+    echo "Usage: $0 [local|remote] [commit_message]"
+    echo ""
+    echo "Commands:"
+    echo "  local   - Build and start local server (no deploy)"
+    echo "  remote  - Build, commit, and deploy to production (default)"
+    echo ""
+    echo "Examples:"
+    echo "  $0 local"
+    echo "  $0 remote \"Updated jahmario page\""
+    echo "  $0 \"Quick update\"  # defaults to remote"
+    echo ""
+}
+
+DEPLOY_TYPE="${1:-remote}"
+COMMIT_MSG="${2:-}"
+
+# Handle help flag
+if [[ "$1" == "-h" || "$1" == "--help" || "$1" == "help" ]]; then
+    usage
+    exit 0
+fi
 
 # Check if we're in the right directory
 if [ ! -f "config.toml" ]; then
@@ -30,7 +53,18 @@ fi
 
 echo ""
 
-# Step 2: Check what files changed
+# Handle local deployment
+if [ "$DEPLOY_TYPE" = "local" ]; then
+    echo "🚀 Starting local server..."
+    echo "🌐 Your site will be available at: http://localhost:1313"
+    echo "📱 CMS: http://localhost:1313/admin"
+    echo "Press Ctrl+C to stop the server"
+    echo ""
+    hugo server -D
+    exit 0
+fi
+
+# Handle remote deployment
 echo "📊 Checking for changes..."
 CHANGED_FILES=$(git status --porcelain | wc -l)
 if [ $CHANGED_FILES -eq 0 ]; then
@@ -51,9 +85,7 @@ echo "📝 Adding all changes..."
 git add .
 
 # Step 5: Commit with timestamp and optional message
-if [ -n "$1" ]; then
-    COMMIT_MSG="$1"
-else
+if [ -z "$COMMIT_MSG" ]; then
     TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
     COMMIT_MSG="Update website - $TIMESTAMP"
 fi
@@ -78,5 +110,5 @@ else
 fi
 
 echo ""
-echo "🔧 To test locally: hugo server -D"
+echo "🔧 To test locally: $0 local"
 

@@ -79,3 +79,4 @@ fi
 
 echo ""
 echo "🔧 To test locally: hugo server -D"
+

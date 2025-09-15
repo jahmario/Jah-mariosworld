@@ -69,3 +69,4 @@ fi
 echo ""
 echo "🔧 To test locally, run: hugo server -D"
 echo "📱 To access CMS: https://jahmario-music.netlify.app/admin"
+

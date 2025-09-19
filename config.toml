@@ -30,19 +30,19 @@ cover_dimming_class = "bg-black-60"
 
     # Configure network profiles (replace usernames/links as appropriate)
     [params.ananke.social.instagram]
-    username = "replace_me"
+    username = "jahmariosworld"
 
     [params.ananke.social.youtube]
     username = "jahmariosworld"
 
     [params.ananke.social.tiktok]
-    username = "replace_me"
+    username = "jahmariosworld"
 
     [params.ananke.social.soundcloud]
     profilelink = "https://soundcloud.com/jahmariosworld"
 
     [params.ananke.social.x-twitter]
-    username = "replace_me"
+    username = "jahmariosworld"
 
     # Spotify is custom (ananke has no built-in network). Uses label text if icon missing.
     [params.ananke.social.networks.spotify]

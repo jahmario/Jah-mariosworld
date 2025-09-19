@@ -11,11 +11,11 @@
                 <div class="door-back"></div>
             </div>
             
-            <!-- Purple Door - Middle -->
+            <!-- Purple Door - Music -->
             <div class="door purple-door" onclick="openDoor('music')">
                 <div class="door-front">
                     <div class="door-handle"></div>
-                    <div class="door-text">Purple</div>
+                    <div class="door-text">Music</div>
                 </div>
                 <div class="door-back"></div>
             </div>
@@ -36,7 +36,19 @@
     <script>
         function openDoor(doorType) {
             const doors = document.querySelectorAll('.door');
+            const selectedDoor = document.querySelector(`.${doorType}-door`);
+            
+            // Add opening animation to all doors
             doors.forEach(door => door.classList.add('opening'));
+            
+            // Add special effect to selected door
+            if (selectedDoor) {
+                selectedDoor.style.transform = 'scale(1.1)';
+                selectedDoor.style.zIndex = '10';
+            }
+            
+            // Add particle effect or glow
+            createDoorEffect(selectedDoor);
             
             setTimeout(() => {
                 // Navigate based on door selection
@@ -51,7 +63,58 @@
                         window.location.href = '/posts';
                         break;
                 }
-            }, 1000);
+            }, 1500);
         }
+        
+        function createDoorEffect(door) {
+            if (!door) return;
+            
+            // Create glow effect
+            const glow = document.createElement('div');
+            glow.style.cssText = `
+                position: absolute;
+                top: -10px;
+                left: -10px;
+                right: -10px;
+                bottom: -10px;
+                border-radius: 25px;
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #a8e6cf);
+                opacity: 0.7;
+                z-index: -1;
+                animation: pulse 0.5s ease-in-out;
+            `;
+            
+            door.style.position = 'relative';
+            door.appendChild(glow);
+            
+            // Add CSS animation
+            if (!document.querySelector('#door-effects')) {
+                const style = document.createElement('style');
+                style.id = 'door-effects';
+                style.textContent = `
+                    @keyframes pulse {
+                        0% { transform: scale(1); opacity: 0.7; }
+                        50% { transform: scale(1.1); opacity: 1; }
+                        100% { transform: scale(1.2); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        
+        // Add hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const doors = document.querySelectorAll('.door');
+            doors.forEach(door => {
+                door.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) scale(1.05)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                door.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
     </script>
 {{ end }}

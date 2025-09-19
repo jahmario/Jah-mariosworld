@@ -1,0 +1,334 @@
+===============================================================================
+                    JAHMARIO WEBSITE DEPLOYMENT GUIDE
+===============================================================================
+
+This guide covers how to start the site locally, deploy to Git, and deploy to Netlify.
+
+===============================================================================
+                                PREREQUISITES
+===============================================================================
+
+1. Install Hugo (Extended version recommended)
+   - Download from: https://github.com/gohugoio/hugo/releases
+   - Or use package manager:
+     * macOS: brew install hugo
+     * Windows: choco install hugo-extended
+     * Linux: sudo apt install hugo (or use snap)
+
+2. Install Git
+   - Download from: https://git-scm.com/downloads
+   - Or use package manager:
+     * macOS: brew install git
+     * Windows: choco install git
+     * Linux: sudo apt install git
+
+3. Create accounts (if you don't have them):
+   - GitHub account: https://github.com
+   - Netlify account: https://netlify.com
+
+===============================================================================
+                            STARTING THE SITE LOCALLY
+===============================================================================
+
+1. Navigate to the website directory:
+   cd /Users/m326652/Documents/M/Jahmario/website
+
+2. Install Hugo (if not already installed):
+   # Check if Hugo is installed
+   hugo version
+   
+   # If not installed, install via Homebrew (macOS)
+   brew install hugo
+
+3. Start the development server:
+   hugo server -D
+   
+   # Alternative with specific port and bind address
+   hugo server -D --port 1313 --bind 0.0.0.0
+
+4. Open your browser and go to:
+   http://localhost:1313
+
+5. The site will auto-reload when you make changes to files.
+
+6. To stop the server:
+   Press Ctrl+C in the terminal
+
+===============================================================================
+                              BUILDING THE SITE
+===============================================================================
+
+1. Build the site for production:
+   hugo --minify
+   
+   # This creates a 'public' directory with the static site
+
+2. Build with specific environment:
+   hugo --environment production --minify
+
+3. Build and serve locally (production build):
+   hugo server --environment production --minify
+
+===============================================================================
+                            DEPLOYING TO GITHUB
+===============================================================================
+
+1. Initialize Git repository (if not already done):
+   cd /Users/m326652/Documents/M/Jahmario/website
+   git init
+
+2. Create .gitignore file (if not exists):
+   echo "public/" >> .gitignore
+   echo ".hugo_build.lock" >> .gitignore
+   echo "resources/_gen/" >> .gitignore
+
+3. Add all files to Git:
+   git add .
+
+4. Make initial commit:
+   git commit -m "Initial commit: Jahmario website"
+
+5. Create repository on GitHub:
+   - Go to https://github.com/new
+   - Repository name: jahmario-website (or your preferred name)
+   - Make it public or private as needed
+   - Don't initialize with README (we already have files)
+
+6. Add remote origin:
+   git remote add origin https://github.com/YOUR_USERNAME/jahmario-website.git
+
+7. Push to GitHub:
+   git branch -M main
+   git push -u origin main
+
+8. For future updates:
+   git add .
+   git commit -m "Update: [describe your changes]"
+   git push origin main
+
+===============================================================================
+                            DEPLOYING TO NETLIFY
+===============================================================================
+
+METHOD 1: CONNECT GITHUB REPOSITORY (RECOMMENDED)
+
+1. Go to https://app.netlify.com
+2. Click "New site from Git"
+3. Choose "GitHub" as your Git provider
+4. Authorize Netlify to access your GitHub account
+5. Select your jahmario-website repository
+6. Configure build settings:
+   - Build command: hugo --minify
+   - Publish directory: public
+   - Hugo version: 0.120.0 (or latest)
+7. Click "Deploy site"
+8. Netlify will automatically build and deploy your site
+9. You'll get a URL like: https://amazing-name-123456.netlify.app
+
+METHOD 2: DRAG AND DROP (QUICK DEPLOY)
+
+1. Build your site locally:
+   hugo --minify
+
+2. Go to https://app.netlify.com
+3. Drag the 'public' folder to the deploy area
+4. Your site will be live immediately
+5. Note: This method doesn't auto-update when you push to Git
+
+METHOD 3: NETLIFY CLI (ADVANCED)
+
+1. Install Netlify CLI:
+   npm install -g netlify-cli
+
+2. Login to Netlify:
+   netlify login
+
+3. Deploy from the website directory:
+   cd /Users/m326652/Documents/M/Jahmario/website
+   netlify deploy --prod --dir=public
+
+===============================================================================
+                            CUSTOM DOMAIN SETUP
+===============================================================================
+
+1. In Netlify dashboard, go to your site
+2. Click "Domain settings"
+3. Click "Add custom domain"
+4. Enter your domain name (e.g., jahmariosworld.com)
+5. Follow Netlify's DNS configuration instructions
+6. Update your domain's DNS records as instructed
+7. Wait for DNS propagation (can take up to 24 hours)
+
+===============================================================================
+                            ENVIRONMENT VARIABLES
+===============================================================================
+
+If you need to set environment variables in Netlify:
+
+1. Go to Site settings > Environment variables
+2. Add variables like:
+   - HUGO_VERSION: 0.120.0
+   - HUGO_ENV: production
+
+===============================================================================
+                            TROUBLESHOOTING
+===============================================================================
+
+COMMON ISSUES:
+
+1. "Hugo not found" error:
+   - Make sure Hugo is installed and in your PATH
+   - Try: which hugo
+   - Reinstall Hugo if necessary
+
+2. "Theme not found" error:
+   - Check that the theme directory exists
+   - Verify config.toml has correct theme name
+   - Run: hugo mod tidy
+
+3. Build fails on Netlify:
+   - Check build logs in Netlify dashboard
+   - Ensure Hugo version is specified
+   - Verify all files are committed to Git
+
+4. Site not updating after Git push:
+   - Check Netlify build logs
+   - Verify webhook is set up correctly
+   - Try manual deploy trigger
+
+5. Images not loading:
+   - Check file paths are correct
+   - Ensure images are in static/ directory
+   - Verify file permissions
+
+===============================================================================
+                            USEFUL COMMANDS
+===============================================================================
+
+# Start development server
+hugo server -D
+
+# Build for production
+hugo --minify
+
+# Check site for errors
+hugo --gc
+
+# List all content
+hugo list all
+
+# Create new content
+hugo new posts/my-new-post.md
+
+# Check Hugo version
+hugo version
+
+# Clean build cache
+hugo --gc
+
+===============================================================================
+                            FILE STRUCTURE
+===============================================================================
+
+website/
+├── archetypes/          # Content templates
+├── assets/             # CSS, JS, images (processed by Hugo)
+├── content/            # Site content (markdown files)
+├── data/               # Data files (YAML, JSON, TOML)
+├── layouts/            # Custom layouts and shortcodes
+├── public/             # Generated static site (don't edit directly)
+├── static/             # Static files (images, etc.)
+├── themes/             # Hugo themes
+├── config.toml         # Site configuration
+└── DEPLOYMENT_GUIDE.txt # This file
+
+===============================================================================
+                            CONTENT MANAGEMENT
+===============================================================================
+
+ADDING NEW MUSIC TEASERS:
+1. Edit data/teasers.yaml
+2. Add new teaser entry with title, audio, cover, etc.
+3. The teasers will automatically appear on the music page
+
+ADDING NEW BLOG POSTS:
+1. Create new file in content/posts/
+2. Use: hugo new posts/my-post.md
+3. Edit the front matter and content
+
+UPDATING SITE CONFIGURATION:
+1. Edit config.toml
+2. Update title, description, social links, etc.
+3. Rebuild and deploy
+
+===============================================================================
+                            BACKUP STRATEGY
+===============================================================================
+
+1. Regular Git commits:
+   - Commit changes frequently
+   - Use descriptive commit messages
+   - Push to GitHub regularly
+
+2. Netlify backups:
+   - Netlify automatically backs up your site
+   - Previous builds are available in dashboard
+
+3. Local backups:
+   - Keep local copy of entire website directory
+   - Consider using cloud storage for additional backup
+
+===============================================================================
+                            PERFORMANCE OPTIMIZATION
+===============================================================================
+
+1. Image optimization:
+   - Use WebP format when possible
+   - Compress images before adding to static/
+   - Consider using Hugo's image processing
+
+2. CSS/JS optimization:
+   - Hugo automatically minifies with --minify flag
+   - Use external CDN for libraries when appropriate
+
+3. Caching:
+   - Netlify provides automatic caching
+   - Set appropriate cache headers if needed
+
+===============================================================================
+                            SUPPORT AND RESOURCES
+===============================================================================
+
+Hugo Documentation: https://gohugo.io/documentation/
+Netlify Documentation: https://docs.netlify.com/
+Git Documentation: https://git-scm.com/doc
+
+For issues specific to this site, check:
+- GitHub repository issues
+- Netlify build logs
+- Hugo community forums
+
+===============================================================================
+                            QUICK START CHECKLIST
+===============================================================================
+
+□ Install Hugo and Git
+□ Test site locally (hugo server -D)
+□ Create GitHub repository
+□ Push code to GitHub
+□ Connect repository to Netlify
+□ Configure custom domain (optional)
+□ Set up automatic deployments
+□ Test production site
+□ Add content and customize
+□ Regular backups and updates
+
+===============================================================================
+                            END OF GUIDE
+===============================================================================
+
+This guide should help you get the Jahmario website up and running locally
+and deployed to production. For additional help, refer to the official
+documentation or reach out to the development team.
+
+Last updated: January 2025
